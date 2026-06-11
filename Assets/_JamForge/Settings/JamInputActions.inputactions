@@ -1,0 +1,44 @@
+{
+    "name": "JamInputActions",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "0f2a3c37-6164-4c72-b681-7741968e58d5",
+            "actions": [
+                { "name": "Move", "type": "Value", "id": "bc8698a3-18d5-48ea-8ec5-8de59b5a9947", "expectedControlType": "Vector2" },
+                { "name": "Look", "type": "Value", "id": "f0273de3-8f63-4dd0-822b-c1bd1c8f4bd9", "expectedControlType": "Vector2" },
+                { "name": "Jump", "type": "Button", "id": "5c5df86b-8056-433d-bc3d-d90c7704808a" },
+                { "name": "Attack", "type": "Button", "id": "2cfbe0ac-7109-4336-ab23-177b9675c747" },
+                { "name": "Interact", "type": "Button", "id": "09402815-a8da-4447-92a2-8bd0eb094ce6" },
+                { "name": "Pause", "type": "Button", "id": "b4c7d1f3-138a-46b1-b7bc-7a2a86aa992a" },
+                { "name": "Submit", "type": "Button", "id": "2355f6eb-22d9-48ee-8543-f0d612f27ff5" },
+                { "name": "Cancel", "type": "Button", "id": "253af0e8-2c51-4cec-9872-46f5348a53e3" },
+                { "name": "Restart", "type": "Button", "id": "4f0f334d-babe-4a94-9020-8941011ed1cb" },
+                { "name": "Debug1", "type": "Button", "id": "1a8510be-4c87-4de2-baf5-c00df4abd7e9" },
+                { "name": "Debug2", "type": "Button", "id": "0e535acc-ce9d-431f-a29d-39823f080763" }
+            ],
+            "bindings": [
+                { "name": "WASD", "id": "205ea82c-9a96-447d-a16c-f1816d6cc94a", "path": "2DVector", "action": "Move", "isComposite": true },
+                { "name": "up", "id": "a864f033-cf3e-48d4-8362-cc6eb810f42f", "path": "<Keyboard>/w", "action": "Move", "isPartOfComposite": true },
+                { "name": "down", "id": "8c3b598f-7d02-4f51-9e0c-a0e3708015a8", "path": "<Keyboard>/s", "action": "Move", "isPartOfComposite": true },
+                { "name": "left", "id": "b82258f9-2f0e-4397-a32c-50e8b2c667fa", "path": "<Keyboard>/a", "action": "Move", "isPartOfComposite": true },
+                { "name": "right", "id": "bdbd4470-e35b-450a-84c5-1587ffc088cd", "path": "<Keyboard>/d", "action": "Move", "isPartOfComposite": true },
+                { "id": "bff544b3-b6db-47e1-8c1a-b30533ef73c2", "path": "<Gamepad>/leftStick", "action": "Move" },
+                { "id": "803a20bb-88cb-4d79-90dd-37ad35a4286e", "path": "<Mouse>/delta", "action": "Look" },
+                { "id": "e70cd17f-d427-4e71-8512-747b6c1db741", "path": "<Gamepad>/rightStick", "action": "Look" },
+                { "id": "0332067f-736f-4658-89f9-7071cd91e8b8", "path": "<Keyboard>/space", "action": "Jump" },
+                { "id": "fba7168f-890f-4f46-a977-a65f7a8330b2", "path": "<Gamepad>/buttonSouth", "action": "Jump" },
+                { "id": "80a849c6-1ff8-4135-a27b-7e5e8682f695", "path": "<Mouse>/leftButton", "action": "Attack" },
+                { "id": "1dce95fa-843d-40e4-9133-847a120a4d35", "path": "<Gamepad>/rightTrigger", "action": "Attack" },
+                { "id": "0bccad23-9321-403f-84c4-c26afb56ded4", "path": "<Keyboard>/e", "action": "Interact" },
+                { "id": "90ccff8a-a8c4-4712-8bf2-362effbfe0c4", "path": "<Gamepad>/buttonWest", "action": "Interact" },
+                { "id": "87f3dcc6-a35a-48ef-9cc1-469cedb04b7b", "path": "<Keyboard>/escape", "action": "Pause" },
+                { "id": "f37c90b7-6741-471f-b9ee-03d46169b1a2", "path": "<Gamepad>/start", "action": "Pause" },
+                { "id": "c9257a58-73d8-4b12-8f4e-f6b00882cd98", "path": "<Keyboard>/r", "action": "Restart" },
+                { "id": "be76547c-908f-471e-ae2a-27c77f843893", "path": "<Keyboard>/f1", "action": "Debug1" },
+                { "id": "49a871c8-ef54-4cef-8b0c-0673b2ec4053", "path": "<Keyboard>/f2", "action": "Debug2" }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

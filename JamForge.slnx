@@ -1,4 +1,6 @@
 ﻿<Solution>
+  <Project Path="JamForge.Runtime.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="JamForge.Editor.csproj" />
 </Solution>
