@@ -11,6 +11,7 @@ namespace JamForge
 
         private readonly Dictionary<string, AudioEntry> music = new();
         private readonly Dictionary<string, AudioEntry> sfx = new();
+        private AudioEntry currentMusicEntry;
 
         protected override void OnAwakeSingleton()
         {
@@ -19,7 +20,7 @@ namespace JamForge
             ApplyVolumes();
         }
 
-        public void PlayMusic(string id, bool fade = true)
+        public void PlayMusic(string id)
         {
             if (!music.TryGetValue(id, out AudioEntry entry) || entry.clip == null)
             {
@@ -27,15 +28,17 @@ namespace JamForge
                 return;
             }
 
+            currentMusicEntry = entry;
             musicSource.clip = entry.clip;
-            musicSource.volume = entry.volume * GetSettingsMusicVolume();
             musicSource.pitch = entry.pitch;
             musicSource.loop = entry.loop;
+            ApplyVolumes();
             musicSource.Play();
         }
 
-        public void StopMusic(bool fade = true)
+        public void StopMusic()
         {
+            currentMusicEntry = null;
             musicSource.Stop();
         }
 
@@ -108,17 +111,20 @@ namespace JamForge
             sfx.Clear();
 
             if (library == null)
+            {
+                Debug.LogWarning("AudioManager has no AudioLibrary assigned. PlayMusic and PlaySfx will warn until one is assigned.", this);
                 return;
+            }
 
             foreach (AudioEntry entry in library.music)
             {
-                if (!string.IsNullOrWhiteSpace(entry.id))
+                if (entry != null && !string.IsNullOrWhiteSpace(entry.id))
                     music[entry.id] = entry;
             }
 
             foreach (AudioEntry entry in library.sfx)
             {
-                if (!string.IsNullOrWhiteSpace(entry.id))
+                if (entry != null && !string.IsNullOrWhiteSpace(entry.id))
                     sfx[entry.id] = entry;
             }
         }
@@ -127,7 +133,7 @@ namespace JamForge
         {
             AudioListener.volume = GetSettingsMasterVolume();
             if (musicSource != null)
-                musicSource.volume = GetSettingsMusicVolume();
+                musicSource.volume = (currentMusicEntry != null ? currentMusicEntry.volume : 1f) * GetSettingsMusicVolume();
         }
 
         private static float GetSettingsMasterVolume() => SettingsManager.Instance != null ? SettingsManager.Instance.MasterVolume : 1f;

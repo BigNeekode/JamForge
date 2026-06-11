@@ -25,10 +25,35 @@ JamForge is a small Unity 6 game jam framework. It lives under `Assets/_JamForge
 6. Press Play from `00_Boot`.
 
 Directly opening a game scene also works because `JamRuntime` creates missing core services before scene load.
+`SettingsManager` loads saved preferences automatically when its singleton wakes up.
 
 ## Input
 
 `InputReader` exposes `Move`, `Look`, and events for `Jump`, `Attack`, `Interact`, `Pause`, `Restart`, `Debug1`, and `Debug2`. If no `InputActionAsset` is assigned, it creates a default runtime action map with WASD, mouse, keyboard, and gamepad bindings.
+Input callbacks are bound while `InputReader` is enabled and removed when disabled or destroyed, so repeated play sessions do not stack duplicate callbacks.
+
+## Audio
+
+`AudioManager` uses simple immediate playback:
+
+```csharp
+AudioManager.Instance.PlayMusic("main_theme");
+AudioManager.Instance.StopMusic();
+AudioManager.Instance.PlaySfx("button_click");
+```
+
+Music fade parameters are intentionally not part of the API. Per-entry music volume is preserved when master or music settings volume changes.
+
+## Health And Damage
+
+`Health` implements `IDamageable` and provides:
+
+```csharp
+health.Damage(1);
+health.Heal(1);
+health.Kill();
+health.ResetHealth();
+```
 
 ## Debug Keys
 

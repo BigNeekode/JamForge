@@ -20,6 +20,11 @@ namespace JamForge
         public int QualityIndex { get; set; }
         public bool VSync { get; set; } = true;
 
+        protected override void OnAwakeSingleton()
+        {
+            Load();
+        }
+
         public void Load()
         {
             MasterVolume = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
@@ -60,7 +65,10 @@ namespace JamForge
         private void Apply()
         {
             Screen.fullScreen = Fullscreen;
-            QualitySettings.SetQualityLevel(Mathf.Clamp(QualityIndex, 0, QualitySettings.names.Length - 1));
+
+            if (QualitySettings.names.Length > 0)
+                QualitySettings.SetQualityLevel(Mathf.Clamp(QualityIndex, 0, QualitySettings.names.Length - 1));
+
             QualitySettings.vSyncCount = VSync ? 1 : 0;
         }
     }

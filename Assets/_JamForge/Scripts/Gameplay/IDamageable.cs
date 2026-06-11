@@ -1,6 +1,6 @@
 namespace JamForge
 {
-    public interface Damageable
+    public interface IDamageable
     {
         void Damage(int amount);
     }

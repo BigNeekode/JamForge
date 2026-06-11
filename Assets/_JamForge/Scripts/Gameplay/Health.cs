@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JamForge
 {
-    public sealed class Health : MonoBehaviour, Damageable
+    public sealed class Health : MonoBehaviour, IDamageable
     {
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private bool gameOverOnDeath;
@@ -17,7 +17,17 @@ namespace JamForge
 
         private void Awake()
         {
-            CurrentHealth = Mathf.Max(1, maxHealth);
+            maxHealth = Mathf.Max(1, maxHealth);
+            CurrentHealth = maxHealth;
+        }
+
+        private void OnValidate()
+        {
+            if (maxHealth < 1)
+            {
+                Debug.LogWarning("Health maxHealth must be at least 1. Clamping to 1.", this);
+                maxHealth = 1;
+            }
         }
 
         public void Damage(int amount)
@@ -25,17 +35,10 @@ namespace JamForge
             if (IsDead || amount <= 0)
                 return;
 
-            CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
-            OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
-            JamEventBus.Raise(new HealthChangedEvent(this, CurrentHealth, maxHealth));
+            SetHealth(CurrentHealth - amount);
 
             if (CurrentHealth == 0)
-            {
-                OnDied?.Invoke();
-                JamEventBus.Raise(new DeathEvent(this));
-                if (gameOverOnDeath)
-                    GameStateManager.Instance?.SetState(GameState.GameOver);
-            }
+                Die();
         }
 
         public void Heal(int amount)
@@ -43,9 +46,37 @@ namespace JamForge
             if (amount <= 0 || IsDead)
                 return;
 
-            CurrentHealth = Mathf.Min(maxHealth, CurrentHealth + amount);
+            SetHealth(CurrentHealth + amount);
+        }
+
+        public void Kill()
+        {
+            if (IsDead)
+                return;
+
+            SetHealth(0);
+            Die();
+        }
+
+        public void ResetHealth()
+        {
+            SetHealth(maxHealth);
+        }
+
+        private void SetHealth(int value)
+        {
+            CurrentHealth = Mathf.Clamp(value, 0, maxHealth);
             OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
             JamEventBus.Raise(new HealthChangedEvent(this, CurrentHealth, maxHealth));
+        }
+
+        private void Die()
+        {
+            OnDied?.Invoke();
+            JamEventBus.Raise(new DeathEvent(this));
+
+            if (gameOverOnDeath)
+                GameStateManager.Instance?.SetState(GameState.GameOver);
         }
     }
 

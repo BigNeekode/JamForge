@@ -18,6 +18,14 @@ namespace JamForge
         private InputAction restartAction;
         private InputAction debug1Action;
         private InputAction debug2Action;
+        private Action<InputAction.CallbackContext> jumpCallback;
+        private Action<InputAction.CallbackContext> attackCallback;
+        private Action<InputAction.CallbackContext> interactCallback;
+        private Action<InputAction.CallbackContext> pauseCallback;
+        private Action<InputAction.CallbackContext> restartCallback;
+        private Action<InputAction.CallbackContext> debug1Callback;
+        private Action<InputAction.CallbackContext> debug2Callback;
+        private bool callbacksBound;
 
         public Vector2 Move { get; private set; }
         public Vector2 Look { get; private set; }
@@ -32,17 +40,27 @@ namespace JamForge
 
         protected override void OnAwakeSingleton()
         {
-            BindActions();
+            ResolveActions();
         }
 
         private void OnEnable()
         {
+            BindCallbacks();
             inputActions?.Enable();
         }
 
         private void OnDisable()
         {
             inputActions?.Disable();
+            UnbindCallbacks();
+            Move = Vector2.zero;
+            Look = Vector2.zero;
+        }
+
+        protected override void OnDestroy()
+        {
+            UnbindCallbacks();
+            base.OnDestroy();
         }
 
         private void Update()
@@ -51,12 +69,15 @@ namespace JamForge
             Look = lookAction?.ReadValue<Vector2>() ?? Vector2.zero;
         }
 
-        private void BindActions()
+        private void ResolveActions()
         {
             if (inputActions == null)
+            {
+                Debug.LogWarning("InputReader has no InputActionAsset assigned. Using runtime default actions.", this);
                 inputActions = CreateDefaultActions();
+            }
 
-            moveAction = inputActions.FindAction("Move", true);
+            moveAction = FindAction("Move", true);
             lookAction = inputActions.FindAction("Look", false);
             jumpAction = inputActions.FindAction("Jump", false);
             attackAction = inputActions.FindAction("Attack", false);
@@ -65,16 +86,62 @@ namespace JamForge
             restartAction = inputActions.FindAction("Restart", false);
             debug1Action = inputActions.FindAction("Debug1", false);
             debug2Action = inputActions.FindAction("Debug2", false);
+        }
 
-            if (jumpAction != null) jumpAction.performed += _ => OnJump?.Invoke();
-            if (attackAction != null) attackAction.performed += _ => OnAttack?.Invoke();
-            if (interactAction != null) interactAction.performed += _ => OnInteract?.Invoke();
-            if (pauseAction != null) pauseAction.performed += _ => HandlePause();
-            if (restartAction != null) restartAction.performed += _ => HandleRestart();
-            if (debug1Action != null) debug1Action.performed += _ => OnDebug1?.Invoke();
-            if (debug2Action != null) debug2Action.performed += _ => OnDebug2?.Invoke();
+        private InputAction FindAction(string actionName, bool required)
+        {
+            InputAction action = inputActions.FindAction(actionName, false);
+            if (required && action == null)
+                Debug.LogError($"InputReader could not find required input action '{actionName}'.", this);
 
-            inputActions.Enable();
+            return action;
+        }
+
+        private void BindCallbacks()
+        {
+            if (callbacksBound)
+                return;
+
+            jumpCallback = _ => OnJump?.Invoke();
+            attackCallback = _ => OnAttack?.Invoke();
+            interactCallback = _ => OnInteract?.Invoke();
+            pauseCallback = _ => HandlePause();
+            restartCallback = _ => HandleRestart();
+            debug1Callback = _ => OnDebug1?.Invoke();
+            debug2Callback = _ => OnDebug2?.Invoke();
+
+            if (jumpAction != null) jumpAction.performed += jumpCallback;
+            if (attackAction != null) attackAction.performed += attackCallback;
+            if (interactAction != null) interactAction.performed += interactCallback;
+            if (pauseAction != null) pauseAction.performed += pauseCallback;
+            if (restartAction != null) restartAction.performed += restartCallback;
+            if (debug1Action != null) debug1Action.performed += debug1Callback;
+            if (debug2Action != null) debug2Action.performed += debug2Callback;
+
+            callbacksBound = true;
+        }
+
+        private void UnbindCallbacks()
+        {
+            if (!callbacksBound)
+                return;
+
+            if (jumpAction != null) jumpAction.performed -= jumpCallback;
+            if (attackAction != null) attackAction.performed -= attackCallback;
+            if (interactAction != null) interactAction.performed -= interactCallback;
+            if (pauseAction != null) pauseAction.performed -= pauseCallback;
+            if (restartAction != null) restartAction.performed -= restartCallback;
+            if (debug1Action != null) debug1Action.performed -= debug1Callback;
+            if (debug2Action != null) debug2Action.performed -= debug2Callback;
+
+            jumpCallback = null;
+            attackCallback = null;
+            interactCallback = null;
+            pauseCallback = null;
+            restartCallback = null;
+            debug1Callback = null;
+            debug2Callback = null;
+            callbacksBound = false;
         }
 
         private void HandlePause()

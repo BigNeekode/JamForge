@@ -11,7 +11,6 @@ namespace JamForge
         {
             JamRuntime.EnsureCoreExists(jamCorePrefab);
 
-            SettingsManager.Instance?.Load();
             GameStateManager.Instance?.SetState(GameState.MainMenu);
 
             if (loadMainMenuOnStart)

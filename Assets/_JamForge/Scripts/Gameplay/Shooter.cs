@@ -10,6 +10,14 @@ namespace JamForge
 
         private float nextFireTime;
 
+        private void OnValidate()
+        {
+            cooldown = Mathf.Max(0f, cooldown);
+
+            if (projectilePool == null)
+                Debug.LogWarning("Shooter needs a projectile ObjectPool reference.", this);
+        }
+
         private void OnEnable()
         {
             if (InputReader.Instance != null)

@@ -20,6 +20,14 @@ namespace JamForge
             Prewarm(initialSize);
         }
 
+        private void OnValidate()
+        {
+            initialSize = Mathf.Max(0, initialSize);
+
+            if (prefab == null)
+                Debug.LogWarning("ObjectPool needs a Poolable prefab before it can spawn objects.", this);
+        }
+
         public Poolable Spawn(Vector3 position, Quaternion rotation)
         {
             Poolable item = GetItem();
