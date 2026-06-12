@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1068145611032100674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4847497260409799003}
+  - component: {fileID: 6353309627222496985}
+  - component: {fileID: 4299455789249716085}
+  - component: {fileID: 5078637913431123982}
+  - component: {fileID: 3045071600124388406}
+  - component: {fileID: 3526981049101267035}
+  - component: {fileID: 7633301912858532986}
+  - component: {fileID: 3547405272301937112}
+  - component: {fileID: 5146187786282657757}
+  - component: {fileID: 4817181997826277731}
+  - component: {fileID: 3916238186693572344}
+  m_Layer: 0
+  m_Name: PolishCore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4847497260409799003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4735678805590408049}
+  - {fileID: 775602419707501291}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6353309627222496985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dbebb757bce3742a03798ea5fb6813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.FeedbackPlayer
+--- !u!114 &4299455789249716085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580ec24d4638031429d212aec4f846b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.PolishSettings
+--- !u!114 &5078637913431123982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e62905320463e4c8e11104487e01fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.PolishCameraShake
+  targetCamera: {fileID: 0}
+--- !u!114 &3045071600124388406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6f6a6bbe8b406418f86344251b82f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.PolishAudioPlayer
+  source2D: {fileID: 0}
+--- !u!114 &3526981049101267035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3359956578c99a4b9f10c2f1648278e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.HitStopController
+--- !u!114 &7633301912858532986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4866c258455fc9c42b655f6e7d19e59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.VfxSpawner
+--- !u!114 &3547405272301937112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872bf642705184a40be3f2fe2f1c07f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.FloatingTextSpawner
+  prefab: {fileID: 0}
+--- !u!114 &5146187786282657757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2078a9717359b8f419687bcd2410e3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.ToastManager
+  toastPrefab: {fileID: 0}
+  fadeDuration: 0.2
+  holdDuration: 1.5
+--- !u!114 &4817181997826277731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e75229849db4b0479b3e96b6cbfd9f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.RumbleController
+--- !u!114 &3916238186693572344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068145611032100674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a86a9396074dff438bd403c03b80271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.PolishDebugPanel
+  previewPreset: {fileID: 0}
+  visibleByDefault: 0
+--- !u!1 &2879189765233753810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4735678805590408049}
+  - component: {fileID: 8143951552485868565}
+  m_Layer: 0
+  m_Name: ScreenFlashOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4735678805590408049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879189765233753810}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4847497260409799003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8143951552485868565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879189765233753810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0321a630de96fe244962aa6027d7b791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.ScreenFlashOverlay
+  image: {fileID: 0}
+--- !u!1 &6683961019478843320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775602419707501291}
+  - component: {fileID: 6093143630115541295}
+  m_Layer: 0
+  m_Name: ScreenFadeOverlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775602419707501291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683961019478843320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4847497260409799003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6093143630115541295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683961019478843320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db566f7ba502654498f2da407b392ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.ScreenFadeOverlay
+  image: {fileID: 0}

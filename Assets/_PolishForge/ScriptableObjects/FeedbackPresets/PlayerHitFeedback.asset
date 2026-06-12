@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe10762b3e0e8d44937c4a81b3154bd, type: 3}
+  m_Name: PlayerHitFeedback
+  m_EditorClassIdentifier: PolishForge.Runtime::PolishForge.FeedbackPreset
+  Effects:
+  - {fileID: 11400000, guid: 34034ab6e5c324f419936fc807f781f0, type: 2}
+  - {fileID: 11400000, guid: a5bc9e64153ce6145968cd36c59dbb1e, type: 2}
+  - {fileID: 11400000, guid: f654b9af8baef674f87ad591f81cbb6f, type: 2}
+  - {fileID: 11400000, guid: 7c68c10d8e2e03748a24d84fdb9760e8, type: 2}
+  - {fileID: 11400000, guid: bbfab7d990aa10d4c9b120c911a83886, type: 2}
+  PlayInParallel: 1
