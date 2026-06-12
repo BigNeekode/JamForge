@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 
 namespace PolishForge
 {
@@ -8,6 +10,11 @@ namespace PolishForge
         [SerializeField] private FeedbackTrigger pickupTrigger;
         [SerializeField] private FeedbackPreset victoryFeedback;
         [SerializeField] private FeedbackPreset gameOverFeedback;
+
+        private void Awake()
+        {
+            RepairInputModule();
+        }
 
         public void HitTarget()
         {
@@ -54,6 +61,22 @@ namespace PolishForge
 
             PolishSettings.Instance.RumbleIntensity = Mathf.Clamp01(value);
             PolishSettings.Instance.Save();
+        }
+
+        private static void RepairInputModule()
+        {
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem == null)
+                return;
+
+            foreach (StandaloneInputModule oldModule in eventSystem.GetComponents<StandaloneInputModule>())
+            {
+                oldModule.enabled = false;
+                Destroy(oldModule);
+            }
+
+            if (eventSystem.GetComponent<InputSystemUIInputModule>() == null)
+                eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace PolishForge
 {
@@ -13,11 +14,6 @@ namespace PolishForge
         private void Awake()
         {
             currentHealth = Mathf.Max(1, health);
-        }
-
-        private void OnMouseDown()
-        {
-            Hit();
         }
 
         public void Hit()
@@ -48,6 +44,26 @@ namespace PolishForge
 
                 currentHealth = Mathf.Max(1, health);
             }
+        }
+    }
+
+    public class PolishDemoClicker : MonoBehaviour
+    {
+        [SerializeField] private Camera raycastCamera;
+
+        private void Update()
+        {
+            Mouse mouse = Mouse.current;
+            if (mouse == null || !mouse.leftButton.wasPressedThisFrame)
+                return;
+
+            Camera cameraToUse = raycastCamera != null ? raycastCamera : Camera.main;
+            if (cameraToUse == null)
+                return;
+
+            Ray ray = cameraToUse.ScreenPointToRay(mouse.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.TryGetComponent(out PolishDemoTarget target))
+                target.Hit();
         }
     }
 }

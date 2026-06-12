@@ -5,6 +5,7 @@ using UnityEditor.Events;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -94,6 +95,7 @@ namespace PolishForge.Editor
             target.name = "PolishDemoTarget_ClickMe";
             target.transform.position = new Vector3(0f, 1f, 3f);
             target.AddComponent<RotateMotion>();
+            target.AddComponent<PolishDemoClicker>();
             PolishDemoTarget demoTarget = target.AddComponent<PolishDemoTarget>();
             SetObject(demoTarget, "hitFeedback", enemyHit);
             SetObject(demoTarget, "deathFeedback", enemyDeath);
@@ -202,6 +204,7 @@ namespace PolishForge.Editor
             GameObject target = GameObject.CreatePrimitive(PrimitiveType.Cube);
             target.name = "PolishDemoTarget";
             target.AddComponent<RotateMotion>();
+            target.AddComponent<PolishDemoClicker>();
             target.AddComponent<PolishDemoTarget>();
             PrefabUtility.SaveAsPrefabAsset(target, DemoTargetPrefabPath);
             Object.DestroyImmediate(target);
@@ -435,7 +438,43 @@ namespace PolishForge.Editor
         {
             GameObject eventSystem = new("EventSystem");
             eventSystem.AddComponent<EventSystem>();
-            eventSystem.AddComponent<StandaloneInputModule>();
+            eventSystem.AddComponent<InputSystemUIInputModule>();
+        }
+
+        [MenuItem("Tools/PolishForge/Repair Demo Scene Input")]
+        public static void RepairDemoSceneInput()
+        {
+            if (!File.Exists(DemoScenePath))
+            {
+                Debug.LogWarning("[PolishForge] Demo scene does not exist yet. Run Tools/PolishForge/Create Demo Scene first.");
+                return;
+            }
+
+            Scene scene = EditorSceneManager.OpenScene(DemoScenePath);
+
+            foreach (StandaloneInputModule module in Object.FindObjectsByType<StandaloneInputModule>(FindObjectsSortMode.None))
+                Object.DestroyImmediate(module);
+
+            EventSystem eventSystem = Object.FindFirstObjectByType<EventSystem>();
+            if (eventSystem == null)
+            {
+                GameObject eventSystemObject = new("EventSystem");
+                eventSystem = eventSystemObject.AddComponent<EventSystem>();
+            }
+
+            if (eventSystem.GetComponent<InputSystemUIInputModule>() == null)
+                eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
+
+            foreach (PolishDemoTarget target in Object.FindObjectsByType<PolishDemoTarget>(FindObjectsSortMode.None))
+            {
+                if (target.GetComponent<PolishDemoClicker>() == null)
+                    target.gameObject.AddComponent<PolishDemoClicker>();
+            }
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[PolishForge] Demo scene input repaired for Unity Input System.");
         }
 
         private static Material CreateMaterial(Color color, string name)
