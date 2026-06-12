@@ -266,7 +266,6 @@ JamForge should be:
 - Easy to understand during a tired 3 AM jam session
 - Useful for both 2D and 3D games
 - Built for Unity 6
-- Friendly to Codex-assisted implementation
 - Free of paid dependencies
 - Free of unnecessary architecture fog
 
@@ -306,7 +305,7 @@ JamForge is licensed under the **Apache License 2.0**.
 
 See [`LICENSE`](LICENSE) for the full license text.
 
-Copyright 2026 Nico Hermawan.
+Copyright 2026 Nico Dicky Hermawan.
 
 Third-party packages, assets, fonts, audio, or Unity Asset Store content are not automatically covered by this license. Review and keep their original licenses before making the project public.
 
