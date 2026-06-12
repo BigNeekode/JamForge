@@ -1,16 +1,33 @@
-# JamForge
+# Forge Toolkit
 
-**JamForge** is a small, reusable **Unity 6 game jam framework** built to help teams start prototypes faster without dragging a giant production architecture into a 48-hour chaos kitchen.
+**Forge Toolkit** is a small Unity 6 framework collection for game jam and prototype development.
 
-It lives under `Assets/_JamForge` so the framework stays easy to inspect, copy, upgrade, or delete when a jam prototype grows into something custom.
+It currently contains two focused modules:
 
-> JamForge is a fast-start kit, not a full engine. It gives you the scaffolding so your actual game can climb faster.
+```text
+JamForge     = make a playable prototype fast
+PolishForge  = make that prototype feel better, clearer, and more shippable
+```
+
+Both modules live inside `Assets/` as separate package-style folders so they are easy to inspect, copy, upgrade, or delete.
+
+> The goal is not to build a giant engine. The goal is to keep a reusable forge rack of practical tools that helps prototypes survive jam chaos.
 
 ---
 
-## What Is Included
+## Modules
 
-JamForge includes common systems that game jam projects usually need again and again:
+### JamForge
+
+**JamForge** is a reusable Unity 6 game jam framework built to help teams start prototypes faster without dragging a giant production architecture into a 48-hour chaos kitchen.
+
+It lives under:
+
+```text
+Assets/_JamForge
+```
+
+JamForge focuses on:
 
 - Scene loading through `SceneLoader`
 - Persistent core services with `PersistentSingleton`
@@ -30,13 +47,51 @@ JamForge includes common systems that game jam projects usually need again and a
 - Debug tools
 - Editor menu helpers under `Tools/JamForge`
 
+### PolishForge
+
+**PolishForge** is a Unity 6 game-feel framework for prototypes and game jam projects.
+
+It lives under:
+
+```text
+Assets/_PolishForge
+```
+
+PolishForge focuses on reusable feedback and presentation polish:
+
+- Feedback presets through `FeedbackPreset`
+- Global feedback playback through `FeedbackPlayer`
+- Context-aware effect playback through `FeedbackContext`
+- Camera shake
+- Screen flash
+- Screen fade
+- Hit stop
+- Time-scale curves
+- Audio cues
+- VFX cues and spawning
+- Floating text
+- Position shake
+- Scale punch
+- Color flash
+- UI punch and shake
+- Juicy buttons
+- Toast notifications
+- Accessibility intensity settings through `PolishSettings`
+- Debug panel through `PolishDebugPanel`
+- Polish checklist under `Tools/PolishForge`
+- Optional JamForge integration under `Scripts/Integrations/JamForge`
+
+Core PolishForge runtime is designed to stay independent from JamForge. JamForge should not depend on PolishForge, while PolishForge may optionally integrate with JamForge.
+
 ---
 
 ## Current Project Progress
 
+### JamForge Status
+
 JamForge is currently in an **early reusable framework** stage. The core scaffolding is already in place and focused on getting a Unity 6 game jam project playable quickly.
 
-### Implemented / Available
+Implemented or available:
 
 - Root project documentation through this `README.md`
 - Internal framework documentation at `Assets/_JamForge/README.md`
@@ -69,41 +124,35 @@ JamForge is currently in an **early reusable framework** stage. The core scaffol
 - Repository-level `.gitignore` rule for private `spec/` planning files
 - Apache License 2.0 added through `LICENSE`
 
-### Usable Now
+JamForge still needs more real-project validation, especially around generated prefabs, generated scenes, WebGL builds, sample 2D/3D prototypes, and public-release cleanup.
 
-JamForge can already be used as a starter foundation for jam prototypes that need:
+### PolishForge Status
 
-- A boot scene
-- A main menu scene
-- A gameplay scene
-- A game-over scene
-- Basic game state transitions
-- Basic UI screen switching
-- Basic settings persistence
-- Basic audio playback
-- Basic input handling
-- Basic health/damage logic
-- Quick debug shortcuts
+PolishForge has been added as the second framework module.
 
-### Still Needs Polish / Validation
+Implemented or available:
 
-These areas should be tested and refined through real jam prototypes:
+- Internal framework documentation at `Assets/_PolishForge/README.md`
+- Runtime assembly definition: `Assets/_PolishForge/Scripts/PolishForge.Runtime.asmdef`
+- Editor assembly definition: `Assets/_PolishForge/Scripts/Editor/PolishForge.Editor.asmdef`
+- Optional JamForge integration assembly under `Assets/_PolishForge/Scripts/Integrations/JamForge`
+- Demo scene: `Assets/_PolishForge/Scenes/PolishForge_Demo.unity`
+- Core prefab: `Assets/_PolishForge/Prefabs/Core/PolishCore.prefab`
+- Demo target prefab: `Assets/_PolishForge/Prefabs/Samples/PolishDemoTarget.prefab`
+- Toast manager prefab
+- Screen flash overlay prefab
+- Sample VFX prefabs such as pickup sparkle and enemy death poof
+- Feedback preset assets for button click, enemy hit, pickup, error, and game over
+- VFX cue assets
+- Core feedback system through `FeedbackPreset`, `FeedbackEffect`, `FeedbackContext`, and `FeedbackPlayer`
+- Effect assets for camera shake, screen flash, screen fade, hit stop, audio cues, VFX spawning, scale punch, color flash, floating text, position shake, time-scale curves, and rumble
+- UI helpers including juicy button, number counter, UI punch, UI shake, UI fade/slide, toast notification, and toast manager
+- Motion helpers including bob motion, position shake, squash/stretch, sprite blink, target resolving, and target mode helpers
+- Accessibility settings through `PolishSettings`
+- Debug tooling through `PolishDebugPanel` and demo action scripts
+- Editor polish checklist under `Tools > PolishForge > Polish Checklist`
 
-- Full prefab generation flow from `Tools/JamForge/Create Core Prefabs`
-- Default scene generation flow from `Tools/JamForge/Create Jam Scenes`
-- Example gameplay scene wiring
-- WebGL build testing
-- Sample 2D prototype
-- Sample 3D prototype
-- More complete usage examples for each system
-- Optional build/submission checklist tooling
-- Third-party asset/package license review before public release
-
-### Private Planning Docs
-
-Private specs and planning documents are intentionally kept out of the public-facing README and ignored through `.gitignore`.
-
-If you keep a local `spec/` folder, it is for planning only and should not be treated as part of the public framework package.
+PolishForge still needs Unity-side validation in clean projects, demo-scene testing, preset tuning, WebGL testing, rumble behavior checks, accessibility menu UI, and more integration examples.
 
 ---
 
@@ -125,11 +174,13 @@ Optional:
 Cinemachine
 ```
 
-Cinemachine can be useful for jam cameras, but JamForge core systems are designed not to depend on it.
+Cinemachine can be useful for jam cameras, but core systems are designed not to depend on it.
 
 ---
 
 ## Quick Start
+
+### JamForge
 
 1. Open the project in Unity 6.
 2. Use `Tools/JamForge/Create Jam Scenes` to create the default scene files.
@@ -148,11 +199,37 @@ Cinemachine can be useful for jam cameras, but JamForge core systems are designe
 
 Directly opening a gameplay scene also works because `JamRuntime` creates missing core services before scene load.
 
+### PolishForge
+
+1. Keep the `Assets/_PolishForge` folder in the project.
+2. Add `PolishCore` to a boot/demo scene, or allow services to auto-create when first used.
+3. Create a preset from:
+
+```text
+Create > PolishForge > Feedback Preset
+```
+
+4. Add effect assets such as `CameraShakeEffect`, `ScreenFlashEffect`, `HitStopEffect`, `AudioCueEffect`, `VfxSpawnEffect`, `ScalePunchEffect`, `ColorFlashEffect`, or `FloatingTextEffect`.
+5. Trigger the preset from code or from a `FeedbackTrigger` UnityEvent.
+
+Example:
+
+```csharp
+FeedbackPlayer.PlayGlobal(enemyHitPreset, new FeedbackContext
+{
+    Source = player,
+    Target = enemy,
+    Position = enemy.transform.position,
+    Intensity = 1f,
+    Amount = damage
+});
+```
+
 ---
 
 ## Folder Structure
 
-The framework is designed to stay contained inside `Assets/_JamForge`:
+The toolkit is designed to keep each module isolated:
 
 ```text
 Assets/
@@ -160,90 +237,42 @@ Assets/
     Art/
     Audio/
     Prefabs/
-      Core/
-      UI/
-      Gameplay/
-      VFX/
     Scenes/
-      00_Boot.unity
-      01_MainMenu.unity
-      02_Game.unity
-      03_GameOver.unity
     Scripts/
-      Core/
-      Input/
-      UI/
-      Audio/
-      SceneFlow/
-      Gameplay/
-      Camera/
-      Save/
-      Debugging/
-      Utilities/
-      Editor/
     ScriptableObjects/
     Resources/
     Settings/
-  ThirdParty/
-  Plugins/
+
+  _PolishForge/
+    Prefabs/
+      Core/
+      Samples/
+      ScreenEffects/
+      UI/
+      VFX/
+    Scenes/
+      PolishForge_Demo.unity
+    Scripts/
+      Accessibility/
+      Animation/
+      Core/
+      Debugging/
+      Editor/
+      Effects/
+      Integrations/
+      Screen/
+      UI/
+      Utilities/
+    ScriptableObjects/
+      FeedbackPresets/
+      VfxCues/
 ```
 
-Keep game-specific scripts outside `_JamForge` unless they are reusable framework helpers. That keeps the framework clean for the next jam, instead of fossilizing one prototype's goblin logic into every future project.
+Keep game-specific scripts outside `_JamForge` and `_PolishForge` unless they are reusable framework helpers.
 
 ---
 
-## Input
-
-`InputReader` exposes:
-
-- `Move`
-- `Look`
-- `Jump`
-- `Attack`
-- `Interact`
-- `Pause`
-- `Restart`
-- `Debug1`
-- `Debug2`
-
-If no `InputActionAsset` is assigned, JamForge creates a default runtime action map with keyboard, mouse, WASD, and gamepad bindings.
-
-Input callbacks are bound while `InputReader` is enabled and removed when disabled or destroyed, preventing duplicate callbacks across repeated play sessions.
-
----
-
-## Audio
-
-`AudioManager` provides simple immediate playback:
-
-```csharp
-AudioManager.Instance.PlayMusic("main_theme");
-AudioManager.Instance.StopMusic();
-AudioManager.Instance.PlaySfx("button_click");
-```
-
-Music fade parameters are intentionally not part of the public API. Per-entry music volume is preserved when master or music settings volume changes.
-
----
-
-## Health And Damage
-
-`Health` implements `IDamageable` and provides:
-
-```csharp
-health.Damage(1);
-health.Heal(1);
-health.Kill();
-health.ResetHealth();
-```
-
-Use it for quick enemies, player health, destructible objects, and other jam-friendly damageable entities.
-
----
-
-## Debug Keys
-
-JamForge includes debug shortcuts for rapid testing:
+## JamForge Debug Keys
 
 | Key | Action |
 | --- | --- |
@@ -256,9 +285,17 @@ JamForge includes debug shortcuts for rapid testing:
 
 ---
 
+## PolishForge Debug Keys
+
+| Key | Action |
+| --- | --- |
+| `F2` | Toggle `PolishDebugPanel` in editor/development builds |
+
+---
+
 ## Design Philosophy
 
-JamForge should be:
+The toolkit should be:
 
 - Simple
 - Modular
@@ -269,6 +306,13 @@ JamForge should be:
 - Free of paid dependencies
 - Free of unnecessary architecture fog
 
+Dependency rule:
+
+```text
+JamForge should not depend on PolishForge.
+PolishForge may optionally integrate with JamForge.
+```
+
 The framework should feel like a reliable folding knife, not a cathedral with wheels.
 
 ---
@@ -277,13 +321,14 @@ The framework should feel like a reliable folding knife, not a cathedral with wh
 
 For each new jam:
 
-1. Duplicate or import JamForge.
-2. Generate the default scenes and core prefabs.
-3. Build your game-specific systems outside `_JamForge`.
-4. Use JamForge services only where they save time.
-5. Delete or replace anything that does not fit the game.
+1. Start with JamForge to get the project playable.
+2. Build game-specific systems outside the framework folders.
+3. Once the loop works, add PolishForge feedback presets for repeated moments.
+4. Tune the polish intensity through `PolishSettings`.
+5. Use debug panels and checklists before building.
+6. Delete or replace anything that does not fit the game.
 
-JamForge is meant to bend, not demand tribute.
+JamForge is meant to bend. PolishForge is meant to sparkle without taking over the castle.
 
 ---
 
@@ -293,7 +338,10 @@ More implementation notes are available inside the project:
 
 ```text
 Assets/_JamForge/README.md
+Assets/_PolishForge/README.md
 ```
+
+A Notion documentation page also exists for PolishForge.
 
 Private planning specs are not referenced here because they are intended to stay local/private.
 
@@ -301,7 +349,7 @@ Private planning specs are not referenced here because they are intended to stay
 
 ## License
 
-JamForge is licensed under the **Apache License 2.0**.
+Forge Toolkit is licensed under the **Apache License 2.0**.
 
 See [`LICENSE`](LICENSE) for the full license text.
 
@@ -313,6 +361,6 @@ Third-party packages, assets, fonts, audio, or Unity Asset Store content are not
 
 ## Status
 
-Early reusable framework for Unity 6 game jam development.
+Early reusable Unity 6 framework collection for game jam development.
 
-Expect sharp edges, tiny dragons, and useful shortcuts.
+Expect sharp edges, tiny dragons, useful shortcuts, and occasional sparks from the anvil.
