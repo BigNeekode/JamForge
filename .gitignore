@@ -10,7 +10,12 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/spec
+
+# Private project specs / planning docs
+/spec/
+spec/
+Spec/
+
 *.log
 
 # MemoryCaptures can get excessive in size.
