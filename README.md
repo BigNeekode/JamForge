@@ -32,6 +32,80 @@ JamForge includes common systems that game jam projects usually need again and a
 
 ---
 
+## Current Project Progress
+
+JamForge is currently in an **early reusable framework** stage. The core scaffolding is already in place and focused on getting a Unity 6 game jam project playable quickly.
+
+### Implemented / Available
+
+- Root project documentation through this `README.md`
+- Internal framework documentation at `Assets/_JamForge/README.md`
+- Framework folder layout under `Assets/_JamForge`
+- Bootstrap-oriented scene flow design
+- Default jam scene order:
+
+```text
+00_Boot
+01_MainMenu
+02_Game
+03_GameOver
+```
+
+- Runtime bootstrap safety through `JamRuntime`
+- Persistent service pattern through `PersistentSingleton`
+- Scene loading through `SceneLoader`
+- Game state flow through `GameStateManager`
+- Global event messaging through `JamEventBus`
+- Unity Input System wrapper through `InputReader`
+- Default runtime input map fallback when no `InputActionAsset` is assigned
+- UI screen helper pattern through `UIManager` and `UIScreen`
+- PlayerPrefs-backed settings through `SettingsManager`
+- Simple music and SFX playback through `AudioManager`
+- Health and damage helpers through `Health` and `IDamageable`
+- Object pooling helpers
+- Interaction, score, timer, projectile, camera, sample controller, and debug helper systems
+- Debug shortcut keys for fast jam testing
+- Editor menu helpers under `Tools/JamForge`
+- Repository-level `.gitignore` rule for private `spec/` planning files
+
+### Usable Now
+
+JamForge can already be used as a starter foundation for jam prototypes that need:
+
+- A boot scene
+- A main menu scene
+- A gameplay scene
+- A game-over scene
+- Basic game state transitions
+- Basic UI screen switching
+- Basic settings persistence
+- Basic audio playback
+- Basic input handling
+- Basic health/damage logic
+- Quick debug shortcuts
+
+### Still Needs Polish / Validation
+
+These areas should be tested and refined through real jam prototypes:
+
+- Full prefab generation flow from `Tools/JamForge/Create Core Prefabs`
+- Default scene generation flow from `Tools/JamForge/Create Jam Scenes`
+- Example gameplay scene wiring
+- WebGL build testing
+- Sample 2D prototype
+- Sample 3D prototype
+- More complete usage examples for each system
+- Optional build/submission checklist tooling
+- Public license decision
+
+### Private Planning Docs
+
+Private specs and planning documents are intentionally kept out of the public-facing README and ignored through `.gitignore`.
+
+If you keep a local `spec/` folder, it is for planning only and should not be treated as part of the public framework package.
+
+---
+
 ## Target Setup
 
 Recommended baseline:
@@ -113,7 +187,7 @@ Assets/
   Plugins/
 ```
 
-Keep game-specific scripts outside `_JamForge` unless they are reusable framework helpers. That keeps the framework clean for the next jam, instead of fossilizing one prototype’s goblin logic into every future project.
+Keep game-specific scripts outside `_JamForge` unless they are reusable framework helpers. That keeps the framework clean for the next jam, instead of fossilizing one prototype's goblin logic into every future project.
 
 ---
 
@@ -219,8 +293,9 @@ More implementation notes are available inside the project:
 
 ```text
 Assets/_JamForge/README.md
-spec/JamForge_Unity6_GameJam_Framework_Spec.md
 ```
+
+Private planning specs are not referenced here because they are intended to stay local/private.
 
 ---
 
