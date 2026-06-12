@@ -67,6 +67,7 @@ JamForge is currently in an **early reusable framework** stage. The core scaffol
 - Debug shortcut keys for fast jam testing
 - Editor menu helpers under `Tools/JamForge`
 - Repository-level `.gitignore` rule for private `spec/` planning files
+- Apache License 2.0 added through `LICENSE`
 
 ### Usable Now
 
@@ -96,7 +97,7 @@ These areas should be tested and refined through real jam prototypes:
 - Sample 3D prototype
 - More complete usage examples for each system
 - Optional build/submission checklist tooling
-- Public license decision
+- Third-party asset/package license review before public release
 
 ### Private Planning Docs
 
@@ -301,9 +302,13 @@ Private planning specs are not referenced here because they are intended to stay
 
 ## License
 
-No license has been added yet.
+JamForge is licensed under the **Apache License 2.0**.
 
-Add a license before sharing this repository publicly or reusing it across multiple team projects.
+See [`LICENSE`](LICENSE) for the full license text.
+
+Copyright 2026 Nico Hermawan.
+
+Third-party packages, assets, fonts, audio, or Unity Asset Store content are not automatically covered by this license. Review and keep their original licenses before making the project public.
 
 ---
 
