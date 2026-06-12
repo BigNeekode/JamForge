@@ -1,0 +1,17 @@
+{
+  "name": "PolishForge.JamForgeIntegration",
+  "rootNamespace": "PolishForge.JamForgeIntegration",
+  "references": [
+    "PolishForge.Runtime",
+    "JamForge.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
