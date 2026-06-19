@@ -1,0 +1,19 @@
+{
+  "name": "com.bigneekode.polishforge",
+  "version": "0.1.0-alpha",
+  "displayName": "PolishForge",
+  "description": "A Unity 6 game-feel and polish framework for making prototypes feel clearer, juicier, and more shippable.",
+  "unity": "6000.0",
+  "author": {
+    "name": "Nico Dicky Hermawan"
+  },
+  "license": "MIT",
+  "keywords": [
+    "unity",
+    "game-feel",
+    "polish",
+    "feedback",
+    "prototype",
+    "toolkit"
+  ]
+}
