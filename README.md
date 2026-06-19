@@ -9,7 +9,7 @@ JamForge     = make a playable prototype fast
 PolishForge  = make that prototype feel better, clearer, and more shippable
 ```
 
-Both modules live inside `Assets/` as separate package-style folders so they are easy to inspect, copy, upgrade, or delete.
+Both modules live inside `Assets/` as separate Unity-package-ready folders so they are easy to inspect, copy, upgrade, release, or install through Unity Package Manager.
 
 > The goal is not to build a giant engine. The goal is to keep a reusable forge rack of practical tools that helps prototypes survive jam chaos.
 
@@ -25,6 +25,12 @@ It lives under:
 
 ```text
 Assets/_JamForge
+```
+
+Unity package name:
+
+```text
+com.bigneekode.jamforge
 ```
 
 JamForge focuses on:
@@ -57,6 +63,12 @@ It lives under:
 Assets/_PolishForge
 ```
 
+Unity package name:
+
+```text
+com.bigneekode.polishforge
+```
+
 PolishForge focuses on reusable feedback and presentation polish:
 
 - Feedback presets through `FeedbackPreset`
@@ -85,6 +97,88 @@ Core PolishForge runtime is designed to stay independent from JamForge. JamForge
 
 ---
 
+## Unity Package Installation
+
+Forge Toolkit supports Unity Package Manager installation from Git paths.
+
+### Install JamForge From Git
+
+In Unity:
+
+1. Open **Window > Package Manager**.
+2. Press **+**.
+3. Choose **Add package from git URL...**.
+4. Use:
+
+```text
+https://github.com/BigNeekode/JamForge.git?path=/Assets/_JamForge
+```
+
+### Install PolishForge From Git
+
+In Unity:
+
+1. Open **Window > Package Manager**.
+2. Press **+**.
+3. Choose **Add package from git URL...**.
+4. Use:
+
+```text
+https://github.com/BigNeekode/JamForge.git?path=/Assets/_PolishForge
+```
+
+### Install A Specific Version Tag
+
+After a version tag exists, use:
+
+```text
+https://github.com/BigNeekode/JamForge.git?path=/Assets/_JamForge#v0.1.0-alpha
+https://github.com/BigNeekode/JamForge.git?path=/Assets/_PolishForge#v0.1.0-alpha
+```
+
+This is the recommended install method for real projects because it keeps the package pinned to a known version instead of always pulling the latest main branch.
+
+### Local Development Install
+
+For local testing, use Unity Package Manager's local package option and point it to:
+
+```text
+Assets/_JamForge
+Assets/_PolishForge
+```
+
+Each folder contains its own `package.json` package manifest.
+
+---
+
+## GitHub Release Packages
+
+This repo includes a GitHub Actions workflow at:
+
+```text
+.github/workflows/release-unity-packages.yml
+```
+
+When a tag starting with `v` is pushed, the workflow packages both Unity packages and attaches them to a GitHub Release.
+
+Example:
+
+```bash
+git tag v0.1.0-alpha
+git push origin v0.1.0-alpha
+```
+
+The release will contain:
+
+```text
+JamForge-0.1.0-alpha.tgz
+PolishForge-0.1.0-alpha.tgz
+```
+
+The workflow can also be run manually from GitHub Actions. Manual runs produce workflow artifacts using a `manual-<run-number>` version label.
+
+---
+
 ## Current Project Progress
 
 ### JamForge Status
@@ -95,6 +189,7 @@ Implemented or available:
 
 - Root project documentation through this `README.md`
 - Internal framework documentation at `Assets/_JamForge/README.md`
+- Unity package manifest at `Assets/_JamForge/package.json`
 - Framework folder layout under `Assets/_JamForge`
 - Bootstrap-oriented scene flow design
 - Default jam scene order:
@@ -133,6 +228,7 @@ PolishForge has been added as the second framework module.
 Implemented or available:
 
 - Internal framework documentation at `Assets/_PolishForge/README.md`
+- Unity package manifest at `Assets/_PolishForge/package.json`
 - Runtime assembly definition: `Assets/_PolishForge/Scripts/PolishForge.Runtime.asmdef`
 - Editor assembly definition: `Assets/_PolishForge/Scripts/Editor/PolishForge.Editor.asmdef`
 - Optional JamForge integration assembly under `Assets/_PolishForge/Scripts/Integrations/JamForge`
@@ -234,6 +330,7 @@ The toolkit is designed to keep each module isolated:
 ```text
 Assets/
   _JamForge/
+    package.json
     Art/
     Audio/
     Prefabs/
@@ -244,6 +341,7 @@ Assets/
     Settings/
 
   _PolishForge/
+    package.json
     Prefabs/
       Core/
       Samples/
