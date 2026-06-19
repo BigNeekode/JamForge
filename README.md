@@ -122,7 +122,7 @@ Implemented or available:
 - Debug shortcut keys for fast jam testing
 - Editor menu helpers under `Tools/JamForge`
 - Repository-level `.gitignore` rule for private `spec/` planning files
-- Apache License 2.0 added through `LICENSE`
+- MIT License added through `LICENSE`
 
 JamForge still needs more real-project validation, especially around generated prefabs, generated scenes, WebGL builds, sample 2D/3D prototypes, and public-release cleanup.
 
@@ -349,7 +349,7 @@ Private planning specs are not referenced here because they are intended to stay
 
 ## License
 
-Forge Toolkit is licensed under the **Apache License 2.0**.
+Forge Toolkit is licensed under the **MIT License**.
 
 See [`LICENSE`](LICENSE) for the full license text.
 
