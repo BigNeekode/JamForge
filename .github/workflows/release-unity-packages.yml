@@ -1,0 +1,101 @@
+name: Release Unity Packages
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Build Unity package archives
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="manual-${GITHUB_RUN_NUMBER}"
+          fi
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Resolved package version: ${VERSION}"
+
+      - name: Prepare package output
+        shell: bash
+        run: mkdir -p release-packages
+
+      - name: Validate package manifests
+        shell: bash
+        run: |
+          test -f Assets/_JamForge/package.json
+          test -f Assets/_PolishForge/package.json
+          python -m json.tool Assets/_JamForge/package.json > /dev/null
+          python -m json.tool Assets/_PolishForge/package.json > /dev/null
+
+      - name: Pack JamForge
+        shell: bash
+        run: |
+          PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          PACKAGE_NAME="JamForge-${PACKAGE_VERSION}.tgz"
+
+          tar \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='Library' \
+            --exclude='Temp' \
+            --exclude='Obj' \
+            --exclude='Build' \
+            --exclude='Builds' \
+            --exclude='Logs' \
+            --exclude='UserSettings' \
+            --exclude='*.csproj' \
+            --exclude='*.sln' \
+            -czf "release-packages/${PACKAGE_NAME}" \
+            -C Assets/_JamForge .
+
+      - name: Pack PolishForge
+        shell: bash
+        run: |
+          PACKAGE_VERSION="${{ steps.version.outputs.version }}"
+          PACKAGE_NAME="PolishForge-${PACKAGE_VERSION}.tgz"
+
+          tar \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='Library' \
+            --exclude='Temp' \
+            --exclude='Obj' \
+            --exclude='Build' \
+            --exclude='Builds' \
+            --exclude='Logs' \
+            --exclude='UserSettings' \
+            --exclude='*.csproj' \
+            --exclude='*.sln' \
+            -czf "release-packages/${PACKAGE_NAME}" \
+            -C Assets/_PolishForge .
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: forge-toolkit-unity-packages-${{ steps.version.outputs.version }}
+          path: release-packages/*.tgz
+          if-no-files-found: error
+
+      - name: Create GitHub release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Forge Toolkit ${{ github.ref_name }}
+          generate_release_notes: true
+          files: release-packages/*.tgz
